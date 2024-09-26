@@ -1,15 +1,15 @@
 
 
 const User = require('../models/User');
-// userController.js
 
-// Define the createUser function
+
+
 exports.createUser = async (req, res) => {
   try {
-    // Your logic to create a new user
+    
     const { name, email, role, password } = req.body;
 
-    // Logic to add the user to the database, etc.
+    
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
@@ -18,7 +18,7 @@ exports.createUser = async (req, res) => {
 };
 
 
-// Get all users
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -28,7 +28,6 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// Get a single user by ID
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -41,7 +40,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// Update a user by ID
+
 exports.updateUser = async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -54,7 +53,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// Delete a user by ID
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
