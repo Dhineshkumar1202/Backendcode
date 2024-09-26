@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware'); // Middleware fo
 
 const router = express.Router();
 
-// POST: Create a new placement drive (Admin only)
+
 router.post('/', authMiddleware.verifyAdmin, async (req, res) => {
   const { name, companies, students, driveDate, location, description } = req.body;
   try {

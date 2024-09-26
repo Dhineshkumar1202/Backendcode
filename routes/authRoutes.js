@@ -6,8 +6,7 @@ const User = require('../models/User');
 const router = express.Router();
 
 // Register a new user
-router.post(
-  '/register',
+router.post('/register',
   [
     body('name').notEmpty().withMessage('Name is required'),
     body('email').isEmail().withMessage('Invalid email').normalizeEmail(),
@@ -51,31 +50,31 @@ router.post(
   }
 );
 
-// POST: Login user
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if the user exists
+  
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Check if password is correct
+   
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Create a JWT token
+    
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin }, // Include isAdmin to verify role
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    // Respond with the token
+    
     res.json({ token, user: { id: user._id, email: user.email, isAdmin: user.isAdmin } });
   } catch (error) {
     res.status(500).json({ message: error.message });

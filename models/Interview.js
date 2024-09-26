@@ -4,17 +4,17 @@ const Schema = mongoose.Schema;
 const interviewSchema = new Schema({
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',  // Reference to User (student)
+        ref: 'User',  
         required: true
     },
     companyId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Company',  // Reference to Company
+        ref: 'Company',  
         required: true
     },
     jobId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'JobPosting',  // Reference to Job
+        ref: 'JobPosting', 
         required: true
     },
     interviewDate: {

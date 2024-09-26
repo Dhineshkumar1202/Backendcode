@@ -9,11 +9,6 @@ const companyRoutes = require('./routes/companyRoutes');
 
 
 
-
-
-
-
-// Middleware
 app.use(express.json());
 app.use(cors()); 
 

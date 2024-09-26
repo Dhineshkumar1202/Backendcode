@@ -4,7 +4,7 @@ const Application = require('../models/Application');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 
-// Get overall recruitment status (admin only)
+
 router.get('/', authMiddleware.verifyAdmin, async (req, res) => {
   try {
     const totalApplications = await Application.countDocuments();

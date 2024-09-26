@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const applicationSchema = new mongoose.Schema({
   student: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // reference to the User (student) model
+    ref: 'User', 
     required: true,
   },
   jobPosting: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'JobPosting', // reference to the JobPosting model
+    ref: 'JobPosting', 
     required: true,
   },
   resume: {
-    type: String, // URL or path to the student's resume
+    type: String, 
     required: true,
   },
   status: {

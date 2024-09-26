@@ -2,7 +2,7 @@ const express = require('express');
 const Interview = require('../models/Interview');  // Import the Interview model
 const router = express.Router();
 
-// Route to schedule a new interview
+
 router.post('/schedule', async (req, res) => {
     try {
         const { studentId, companyId, jobId, interviewDate, interviewType } = req.body;
@@ -20,7 +20,7 @@ router.post('/schedule', async (req, res) => {
     }
 });
 
-// Route to get all interviews for a student
+
 router.get('/student/:id', async (req, res) => {
     try {
         const interviews = await Interview.find({ studentId: req.params.id })
@@ -32,7 +32,7 @@ router.get('/student/:id', async (req, res) => {
     }
 });
 
-// Route to update interview status or feedback
+
 router.put('/:id', async (req, res) => {
     try {
         const { status, feedback } = req.body;

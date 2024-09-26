@@ -26,7 +26,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login user (you can implement JWT here)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -40,7 +39,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Get all users (admin only)
+
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
@@ -50,7 +49,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get user by ID
+
 router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -61,7 +60,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Update user details (only admin or user itself)
+
 router.put('/:id', async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -72,7 +71,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a user (admin only)
+
 router.delete('/:id', async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);

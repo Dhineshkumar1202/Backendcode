@@ -4,7 +4,7 @@ const Application = require('../models/Application');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 
-// Generate placement report (admin only)
+
 router.get('/placements', authMiddleware.verifyAdmin, async (req, res) => {
   try {
     const placements = await Application.find({ status: 'accepted' })

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const JobPosting = require('../models/JobPosting');
 
-// 1. Create a new job posting (POST request)
+
 router.post('/create', async (req, res) => {
   try {
     const newJob = new JobPosting(req.body);
@@ -13,7 +13,7 @@ router.post('/create', async (req, res) => {
   }
 });
 
-// 2. Get all job postings (GET request)
+
 router.get('/', async (req, res) => {
   try {
     const jobs = await JobPosting.find();
@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 3. Get a specific job posting by ID (GET request)
 router.get('/:id', async (req, res) => {
   try {
     const job = await JobPosting.findById(req.params.id);
@@ -34,7 +33,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// 4. Update a job posting by ID (PUT request)
+
 router.put('/:id', async (req, res) => {
   try {
     const updatedJob = await JobPosting.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -45,7 +44,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// 5. Delete a job posting by ID (DELETE request)
+
 router.delete('/:id', async (req, res) => {
   try {
     const deletedJob = await JobPosting.findByIdAndDelete(req.params.id);

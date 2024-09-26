@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all companies
+
 router.get('/', async (req, res) => {
   try {
     const companies = await Company.find();
