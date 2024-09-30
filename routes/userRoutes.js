@@ -1,11 +1,11 @@
 const express = require('express');
-const User = require('../models/User'); // User model
+const User = require('../models/User');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-console.log(userController.createUser);  // Add this line to debug
+console.log(userController.createUser);  
 
-// Define the POST route
+
 router.post('/', userController.createUser);
 
 
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 
-// Register a new user
+
 router.post('/register', async (req, res) => {
   const { name, email, password, role } = req.body;
   try {

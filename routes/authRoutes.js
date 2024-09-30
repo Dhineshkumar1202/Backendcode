@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = express.Router();
 
-// Register a new user
+
 router.post('/register',
   [
     body('name').notEmpty().withMessage('Name is required'),
@@ -14,27 +14,27 @@ router.post('/register',
     body('role').optional().isIn(['admin', 'user']).withMessage('Invalid role'),
   ],
   async (req, res) => {
-    // Validate input
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Extract data
+   
     const { name, email, password, role } = req.body;
 
     try {
-      // Check if user exists
+     
       let user = await User.findOne({ email });
       if (user) {
         return res.status(400).json({ message: 'User already exists' });
       }
 
-      // Hash password
+     
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      // Create user
+     
       user = new User({
         name,
         email,

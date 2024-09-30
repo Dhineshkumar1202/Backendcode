@@ -1,21 +1,31 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
 const app = express();
-const authRoutes = require('./routes/authRoutes');
-const cors = require('cors'); // For CORS
+
+app.use(cors({
+  origin: 'http://localhost:3000', 
+  credentials: true 
+}));
+
+
+
+
+// Import middleware
 const authMiddleware = require('./middleware/authMiddleware');
-const companyRoutes = require('./routes/companyRoutes');
-
-
-
-app.use(express.json());
+app.use(express.json()); 
 app.use(cors()); 
+app.use(express.urlencoded({ extended: true })); 
 
 
 
 
 // Import routes
+const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes'); 
+const companyRoutes = require('./routes/companyRoutes');
+const studentRoutes = require('./routes/studentRoutes'); 
 const userRoutes = require('./routes/userRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const interviewRoutes = require('./routes/interviewRoutes');
@@ -33,12 +43,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/interviews', interviewRoutes);
-app.use('/api/jobs', jobPostingRoutes);
+app.use('/api/jobs', jobPostingRoutes); 
 app.use('/api/placement-drives', placementDriveRoutes);
-app.use('/api/recruitment-status', recruitmentStatusRoutes);
 app.use('/api/reports', reportRoutes);
-app.use('/api/companies', companyRoutes);
-
+app.use('/admin', adminRoutes);
+app.use('/student', studentRoutes);
+app.use('/company', companyRoutes);
 
 
 
@@ -50,6 +60,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 
 
+  
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -10,4 +10,5 @@ const placementDriveSchema = new mongoose.Schema({
   createdOn: { type: Date, default: Date.now },
 });
 
+// Export the model
 module.exports = mongoose.model('PlacementDrive', placementDriveSchema);
